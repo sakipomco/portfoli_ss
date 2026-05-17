@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>saki shigeyasu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Variables ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #0a0a0a;
+      --white:    #fafafa;
+      --mid:      #555;
+      --light:    #aaa;
+      --border:   #dedede;
+      --nav-h:    56px;
+      --font-en:  'EB Garamond', Georgia, 'Times New Roman', serif;
+      --font-ja:  'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', '游明朝', serif;
+      --font-ui:  'DIN Alternate', 'Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
+      --font-brand: 'DNP ShueiMincho Std', 'A-OTF Shuei Mincho Std', 'Hiragino Mincho ProN', 'Yu Mincho', '游明朝', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-ja);
+      font-weight: 300;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── Header ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: transparent;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .header-logo-img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    .header-nav a {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--black);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .header-nav a:hover { opacity: 0.4; }
+
+    /* ─── Hero ─── */
+    #hero {
+      padding: calc(var(--nav-h) + 5.5rem) 2.5rem 0;
+    }
+
+    .hero-frame {
+      position: relative;
+      width: 100%;
+      height: 82svh;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.30) 42%,
+        rgba(0, 0, 0, 0.05) 68%,
+        transparent 100%
+      );
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 2.6rem;
+      left: 3rem;
+      right: 3rem;
+      color: #fff;
+    }
+
+    .hero-name-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.1rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-name-en {
+      font-family: var(--font-brand);
+      font-style: normal;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+
+    .hero-name-ja {
+      font-family: var(--font-ja);
+      font-weight: 200;
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      letter-spacing: 0.22em;
+      opacity: 0.85;
+    }
+
+    .hero-concept {
+      font-family: var(--font-ja);
+      font-weight: 200;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* ─── Section base ─── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-ui);
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-en);
+      font-style: normal;
+      font-weight: 400;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+      color: var(--black);
+    }
+
+    /* ─── Works ─── */
+    #works { border-top: 1px solid var(--border); }
+
+    .works-tabs {
+      display: flex;
+      align-items: flex-end;
+      gap: 0;
+      margin-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.55rem 0;
+      margin-right: 2.2rem;
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--light);
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--black);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+
+    .tab-btn.active {
+      color: var(--black);
+    }
+
+    .tab-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    .tab-btn:hover { color: var(--mid); }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem 1.6rem;
+    }
+
+    .work-card { cursor: default; }
+
+    .work-img-wrap {
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      margin-bottom: 0.9rem;
+      background: #e8e8e8;
+    }
+
+    .work-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .work-card:hover .work-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .work-title {
+      font-family: var(--font-en);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      margin-bottom: 0.2rem;
+      line-height: 1.4;
+    }
+
+    .work-cat {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--light);
+    }
+
+    /* ─── About ─── */
+    #about { border-top: 1px solid var(--border); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-bio {
+      font-family: var(--font-en);
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 2;
+      color: var(--black);
+    }
+
+    .about-bio p + p { margin-top: 1.4em; }
+
+    .about-bio-sub {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+      line-height: 2;
+    }
+
+    /* ─── About photo ─── */
+    .about-photo-wrap {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 3.5rem;
+    }
+
+    .about-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(8%);
+    }
+
+    .skills-block {}
+
+    .skills-label {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .skills-list { list-style: none; }
+
+    .skills-list li {
+      font-family: var(--font-ja);
+      font-weight: 200;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      color: var(--black);
+      padding: 0.9rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .skills-list li:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── Price ─── */
+    #price { border-top: 1px solid var(--border); }
+
+    .price-table {
+      width: 100%;
+      max-width: 640px;
+      border-collapse: collapse;
+    }
+
+    .price-table thead tr {
+      border-bottom: 1px solid var(--black);
+    }
+
+    .price-table th {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.24em;
+      color: var(--light);
+      padding-bottom: 0.7rem;
+      text-align: left;
+    }
+
+    .price-table th:last-child { text-align: right; }
+
+    .price-table td {
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      padding: 1.05rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--black);
+      vertical-align: baseline;
+    }
+
+    .price-table td:last-child {
+      text-align: right;
+      font-family: var(--font-en);
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .price-table tbody tr:last-child td {
+      border-bottom: 1px solid var(--black);
+    }
+
+    .price-note {
+      margin-top: 1.6rem;
+      max-width: 640px;
+      font-family: var(--font-ja);
+      font-weight: 200;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--light);
+      line-height: 2;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.4rem 2.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--light);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--black); }
+
+    /* ─── Scroll Reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Hero entrance ─── */
+    .hero-text-inner {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s cubic-bezier(.4,0,.2,1) forwards 0.3s;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 860px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner { padding: 0 1.4rem; }
+      .header-nav { gap: 1.4rem; }
+      .header-nav a { font-size: 0.6rem; letter-spacing: 0.14em; }
+
+      #hero { padding: calc(var(--nav-h) + 2.5rem) 1rem 1rem; }
+      .hero-text { left: 1.6rem; right: 1.6rem; bottom: 1.8rem; }
+
+      .section { padding: 4rem 1.4rem; }
+
+      .tab-btn { margin-right: 1.4rem; font-size: 0.62rem; }
+
+      footer { padding: 2rem 1.4rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header id="site-header">
+    <div class="header-inner">
+      <a href="#" class="header-logo">
+        <img src="saki_LOGO_202112.png" alt="saki shigeyasu" class="header-logo-img" />
+      </a>
+      <nav aria-label="main">
+        <ul class="header-nav">
+          <li><a href="#works">WORKS</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#price">PRICE</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section id="hero" aria-label="hero">
+    <div class="hero-frame">
+      <img
+        class="hero-img"
+        src="IMG_masucard.jpg"
+        alt="saki shigeyasu portfolio hero"
+      />
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+    </div>
+  </section>
+
+  <!-- ── Works ── -->
+  <section id="works">
+    <div class="section">
+      <div class="section-header reveal">
+<h2 class="section-title">Works</h2>
+      </div>
+      <div class="works-tabs reveal" role="tablist" aria-label="works category">
+        <button class="tab-btn active" data-tab="all"      role="tab" aria-selected="true">all</button>
+        <button class="tab-btn"        data-tab="logo"     role="tab" aria-selected="false">logo</button>
+        <button class="tab-btn"        data-tab="shop"     role="tab" aria-selected="false">shop</button>
+        <button class="tab-btn"        data-tab="magazine" role="tab" aria-selected="false">magazine</button>
+        <button class="tab-btn"        data-tab="others"   role="tab" aria-selected="false">others</button>
+      </div>
+      <div class="works-grid" id="works-grid">
+
+        <article class="work-card reveal" data-category="logo">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk01/600/450" alt="Haruki Coffee — logo design" loading="lazy" />
+          </div>
+          <h3 class="work-title">Haruki Coffee</h3>
+          <p class="work-cat">logo</p>
+        </article>
+
+        <article class="work-card reveal" data-category="logo">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk02/600/450" alt="Mori Florist — logo design" loading="lazy" />
+          </div>
+          <h3 class="work-title">Mori Florist</h3>
+          <p class="work-cat">logo</p>
+        </article>
+
+        <article class="work-card reveal" data-category="shop">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk03/600/450" alt="Shiro Bakery — shop branding" loading="lazy" />
+          </div>
+          <h3 class="work-title">Shiro Bakery</h3>
+          <p class="work-cat">shop</p>
+        </article>
+
+        <article class="work-card reveal" data-category="shop">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk04/600/450" alt="Kiro Candle — packaging design" loading="lazy" />
+          </div>
+          <h3 class="work-title">Kiro Candle</h3>
+          <p class="work-cat">shop</p>
+        </article>
+
+        <article class="work-card reveal" data-category="magazine">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk05/600/450" alt="Mono Magazine Issue 04 — editorial design" loading="lazy" />
+          </div>
+          <h3 class="work-title">Mono Magazine #04</h3>
+          <p class="work-cat">magazine</p>
+        </article>
+
+        <article class="work-card reveal" data-category="magazine">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk06/600/450" alt="Hana Zine — editorial design" loading="lazy" />
+          </div>
+          <h3 class="work-title">Hana Zine</h3>
+          <p class="work-cat">magazine</p>
+        </article>
+
+        <article class="work-card reveal" data-category="others">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk07/600/450" alt="Tokyo Jazz Collective — poster design" loading="lazy" />
+          </div>
+          <h3 class="work-title">Tokyo Jazz Collective</h3>
+          <p class="work-cat">others</p>
+        </article>
+
+        <article class="work-card reveal" data-category="logo">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk08/600/450" alt="Ume Studio — logo design" loading="lazy" />
+          </div>
+          <h3 class="work-title">Ume Studio</h3>
+          <p class="work-cat">logo</p>
+        </article>
+
+        <article class="work-card reveal" data-category="shop">
+          <div class="work-img-wrap">
+            <img src="https://picsum.photos/seed/wk09/600/450" alt="Sora Apparel — shop branding" loading="lazy" />
+          </div>
+          <h3 class="work-title">Sora Apparel</h3>
+          <p class="work-cat">shop</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <div class="section">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">profile</p>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="about-photo-wrap reveal">
+        <img
+          class="about-photo"
+          src="saki_artistph.jpg"
+          alt="saki shigeyasu"
+        />
+      </div>
+      <div class="about-grid">
+        <div class="about-bio reveal">
+          <p class="about-bio-sub">
+            Turning feelings into form. I aim for design that is simple yet precise, with just a hint of humour. Feel free to reach out for logos, print, web, brand renewal, and more. Based in Zushi, Kanagawa.
+          </p>
+          <p class="about-bio-sub">
+            きもちをカタチに。シンプルながらも的確に、ほんのすこしのユーモアあるデザインを心がけています。ロゴ、紙モノ、ウェブ、ブランドのリニューアルなど、お気軽にお声がけください。神奈川県逗子市在住。
+          </p>
+        </div>
+        <div class="skills-block reveal">
+          <p class="skills-label">tools &amp; skills</p>
+          <ul class="skills-list">
+            <li>illustrator</li>
+            <li>photoshop</li>
+            <li>indesign</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Price ── -->
+  <section id="price">
+    <div class="section">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">fee guide</p>
+        <h2 class="section-title">Price</h2>
+      </div>
+      <div class="reveal">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>item</th>
+              <th>fee</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>名刺</td>
+              <td>¥15,000 〜</td>
+            </tr>
+            <tr>
+              <td>ロゴ</td>
+              <td>¥50,000 〜</td>
+            </tr>
+            <tr>
+              <td>リーフレット・フライヤー</td>
+              <td>¥30,000 〜</td>
+            </tr>
+            <tr>
+              <td>ブランドリニューアル</td>
+              <td>¥150,000 〜</td>
+            </tr>
+            <tr>
+              <td>Webサイト</td>
+              <td>¥50,000 〜</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="price-note">
+          ー 表示価格はすべて税別・参考価格です。プロジェクトの規模・内容により変動します。<br>
+          ー まずはお気軽にご相談ください。お見積もりは無料です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer / Contact ── -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 saki shigeyasu</p>
+      <ul class="footer-links">
+        <li><a href="mailto:hello@sakishigeyasu.com">Email</a></li>
+        <li><a href="#" aria-label="Instagram">Instagram</a></li>
+        <li><a href="#" aria-label="diary">diary</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    /* Sticky header border */
+    const hdr = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      hdr.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    /* Works tab filter */
+    const tabBtns  = document.querySelectorAll('.tab-btn');
+    const workCards = document.querySelectorAll('.work-card');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const tab = btn.dataset.tab;
+        workCards.forEach(card => {
+          const show = tab === 'all' || card.dataset.category === tab;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+
+    /* Scroll reveal with stagger */
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            revealObserver.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
+    );
+
+    /* Stagger siblings in the same parent */
+    const revealEls = document.querySelectorAll('.reveal');
+    let siblingIndex = new Map();
+
+    revealEls.forEach(el => {
+      const parent = el.parentElement;
+      const idx = (siblingIndex.get(parent) || 0);
+      siblingIndex.set(parent, idx + 1);
+      el.style.transitionDelay = `${idx * 0.06}s`;
+      revealObserver.observe(el);
+    });
+  </script>
+
+</body>
+</html>
