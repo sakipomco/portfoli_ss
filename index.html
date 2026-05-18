@@ -18,6 +18,7 @@
       --light:    #aaa;
       --border:   #dedede;
       --nav-h:    56px;
+      --header-h: 140px;
       --font-en:  'EB Garamond', Georgia, 'Times New Roman', serif;
       --font-ja:  'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', '游明朝', serif;
       --font-ui:  'DIN Alternate', 'Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
@@ -40,37 +41,51 @@
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      height: var(--nav-h);
+      height: var(--header-h);
       background: transparent;
       z-index: 100;
+      overflow: visible;
     }
 
     .header-inner {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2.5rem;
-      height: 100%;
+      padding: 1.2rem 2.5rem 1.2rem;
+      height: var(--header-h);
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
     }
 
     .header-logo {
       display: flex;
       align-items: center;
+      gap: 1.1rem;
       text-decoration: none;
+      padding: 0.8rem 0;
     }
 
     .header-logo-img {
-      height: 28px;
+      height: 100px;
       width: auto;
       display: block;
+      flex-shrink: 0;
+    }
+
+    .header-logo-moji {
+      height: 48px;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
     }
 
     .header-nav {
       display: flex;
       gap: 2.4rem;
       list-style: none;
+      position: absolute;
+      bottom: 1.2rem;
+      right: 2.5rem;
     }
 
     .header-nav a {
@@ -87,7 +102,10 @@
 
     /* ─── Hero ─── */
     #hero {
-      padding: calc(var(--nav-h) + 5.5rem) 2.5rem 0;
+      padding: calc(var(--header-h) + 0.5rem) 2.5rem 0;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-frame {
@@ -186,6 +204,17 @@
       line-height: 1.15;
       color: var(--black);
     }
+
+    .section-title-img {
+      height: clamp(1.14rem, 2.4vw, 1.68rem); /* works: 60% */
+      width: auto;
+      display: block;
+    }
+
+    /* 各セクションタイトル画像を同じ拡大率に（基準: works_moji 55px） */
+    .section-title-img[alt="About"]   { height: clamp(1.12rem, 2.36vw, 1.65rem); }
+    .section-title-img[alt="Price"]   { height: clamp(1.49rem, 3.14vw, 2.20rem); }
+    .section-title-img[alt="Contact"] { height: clamp(0.87rem, 1.83vw, 1.28rem); }
 
     /* ─── Works ─── */
     #works { }
@@ -309,23 +338,37 @@
     }
 
     /* ─── About photo ─── */
-    .about-photo-wrap {
+    .about-top {
       display: flex;
-      justify-content: flex-start;
+      gap: 3.5rem;
+      align-items: flex-start;
       margin-top: 3.5rem;
     }
 
     .about-photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
+      width: 280px;
+      height: auto;
       display: block;
       filter: grayscale(8%);
+      flex-shrink: 0;
     }
 
-    .skills-block {}
+    .about-bio-wrap {
+      flex: 1;
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding-top: 5rem;
+    }
+
+    .about-bio-en-text {
+      color: var(--light);
+    }
+
+    .skills-block {
+      margin-top: 3rem;
+    }
 
     .skills-label {
       font-family: var(--font-ui);
@@ -599,18 +642,29 @@
 
     /* ─── Responsive ─── */
     @media (max-width: 860px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+      .about-top {
+        flex-direction: column;
+        gap: 0;
+      }
+      .about-photo {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+      }
+      .about-bio-wrap {
+        width: 100%;
+        margin-top: -2rem;
       }
     }
 
     @media (max-width: 600px) {
       .header-inner { padding: 0 1.4rem; }
+      .header-logo-moji { height: 28px; }
+      .header-logo { gap: 0.6rem; }
       .header-nav { gap: 1.4rem; }
       .header-nav a { font-size: 0.6rem; letter-spacing: 0.14em; }
 
-      #hero { padding: calc(var(--nav-h) + 2.5rem) 1rem 1rem; }
+      #hero { padding: calc(var(--header-h) + 0.5rem) 1rem 0; }
       .hero-text { left: 1.6rem; right: 1.6rem; bottom: 1.8rem; }
 
       .works-grid { grid-template-columns: 1fr; }
@@ -631,6 +685,7 @@
     <div class="header-inner">
       <a href="#" class="header-logo">
         <img src="saki_LOGO_202112.png" alt="saki shigeyasu" class="header-logo-img" />
+        <img src="sakishigeyasu_moji.png" alt="saki shigeyasu" class="header-logo-moji" />
       </a>
       <nav aria-label="main">
         <ul class="header-nav">
@@ -660,7 +715,7 @@
   <section id="works">
     <div class="section">
       <div class="section-header reveal">
-<h2 class="section-title">Works</h2>
+<h2 class="section-title"><img src="works_moji.png" alt="Works" class="section-title-img" /></h2>
       </div>
       <div class="works-tabs reveal" role="tablist" aria-label="works category">
         <button class="tab-btn active" data-tab="all"      role="tab" aria-selected="true">all</button>
@@ -670,6 +725,22 @@
         <button class="tab-btn"        data-tab="others"   role="tab" aria-selected="false">others</button>
       </div>
       <div class="works-grid" id="works-grid">
+
+        <article class="work-card reveal" data-category="others">
+          <div class="work-img-wrap">
+            <img src="seal_IMG_3520re.jpg" alt="seal design" loading="lazy" />
+          </div>
+          <h3 class="work-title">［ 三十年商店 ］</h3>
+          <p class="work-cat">logo / sticker</p>
+        </article>
+
+        <article class="work-card reveal" data-category="magazine">
+          <div class="work-img-wrap">
+            <img src="inu_IMG_2428.jpg" alt="いぬのきもち magazine cover" loading="lazy" />
+          </div>
+          <h3 class="work-title">［ いぬのきもち ］</h3>
+          <p class="work-cat">magazine / cover</p>
+        </article>
 
         <article class="work-card reveal" data-category="logo">
           <div class="work-img-wrap">
@@ -752,32 +823,30 @@
     <div class="section">
       <div class="section-header reveal">
         <p class="section-eyebrow">profile</p>
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title"><img src="about_moji.png" alt="About" class="section-title-img" /></h2>
       </div>
-      <div class="about-photo-wrap reveal">
+      <div class="about-top reveal">
         <img
           class="about-photo"
-          src="saki_artistph.jpg"
+          src="saki_artistph.png"
           alt="saki shigeyasu"
         />
+        <div class="about-bio-wrap">
+          <p class="about-bio-sub">
+            きもちをカタチに。シンプルながらも的確に、ほんのすこしのユーモアあるデザインを。その結果、信頼が伝わる仕事を心がけています。ロゴ、紙モノ、ウェブ、ブランドのリニューアルなど、お気軽にお声がけください。神奈川県逗子市在住。
+          </p>
+          <p class="about-bio-sub about-bio-en-text">
+            Turning feelings into form. Simple yet precise, with just a touch of humour — design that earns trust. Feel free to reach out for logos, print, web, brand renewal, and more. Based in Zushi, Kanagawa.
+          </p>
+        </div>
       </div>
-      <div class="about-grid">
-        <div class="about-bio reveal">
-          <p class="about-bio-sub">
-            Turning feelings into form. I aim for design that is simple yet precise, with just a hint of humour. Feel free to reach out for logos, print, web, brand renewal, and more. Based in Zushi, Kanagawa.
-          </p>
-          <p class="about-bio-sub">
-            きもちをカタチに。シンプルながらも的確に、ほんのすこしのユーモアあるデザインを心がけています。ロゴ、紙モノ、ウェブ、ブランドのリニューアルなど、お気軽にお声がけください。神奈川県逗子市在住。
-          </p>
-        </div>
-        <div class="skills-block reveal">
-          <p class="skills-label">tools &amp; skills</p>
-          <ul class="skills-list">
-            <li>illustrator</li>
-            <li>photoshop</li>
-            <li>indesign</li>
-          </ul>
-        </div>
+      <div class="skills-block reveal">
+        <p class="skills-label">tools &amp; skills</p>
+        <ul class="skills-list">
+          <li>illustrator</li>
+          <li>photoshop</li>
+          <li>indesign</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -787,7 +856,7 @@
     <div class="section">
       <div class="section-header reveal">
         <p class="section-eyebrow">fee guide</p>
-        <h2 class="section-title">Price</h2>
+        <h2 class="section-title"><img src="price_moji.png" alt="Price" class="section-title-img" /></h2>
       </div>
       <div class="reveal">
         <table class="price-table">
@@ -829,8 +898,9 @@
           </tbody>
         </table>
         <p class="price-note">
-          ー 表示価格はすべて税別・参考価格です。プロジェクトの規模・内容により変動します。<br>
-          ー まずはお気軽にご相談ください。お見積もりは無料です。
+          — 表示価格はすべて税別・参考価格です。<br>
+          — プロジェクトの規模・内容により変動します。<br>
+          — まずはお気軽にご相談ください。お見積もりは無料です。
         </p>
       </div>
     </div>
@@ -842,7 +912,7 @@
       <div class="section">
         <div class="section-header reveal">
           <p class="section-eyebrow">get in touch</p>
-          <h2 class="section-title">Contact</h2>
+          <h2 class="section-title"><img src="contact_moji.png" alt="Contact" class="section-title-img" /></h2>
         </div>
         <p class="contact-lead reveal">
           お仕事のご依頼・ご相談は、<br>
