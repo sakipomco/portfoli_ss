@@ -149,6 +149,9 @@
       padding: 0.5rem 1.1rem;
     }
 
+    /* ヘッダー内でも CTA は明朝のまま（.header-nav a に負けないよう指定）*/
+    .header-nav .btn-cta { font-family: var(--font-ja); }
+
     /* セクション末尾に置くCTA */
     .section-cta {
       margin-top: 3rem;
@@ -164,8 +167,8 @@
 
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
+      grid-template-columns: 1fr;
+      gap: 3rem;
       align-items: center;
     }
 
@@ -173,6 +176,21 @@
       opacity: 0;
       transform: translateY(12px);
       animation: fadeUp 0.9s cubic-bezier(.4,0,.2,1) forwards 0.2s;
+    }
+
+    .hero-catch-img {
+      margin: 0;
+      line-height: 0;
+      order: 2;
+    }
+
+    .hero-catch-img img {
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-catch {
@@ -231,7 +249,7 @@
 
     .hero-img {
       width: 100%;
-      height: min(58svh, 520px);
+      height: min(70svh, 640px);
       object-fit: cover;
       display: block;
     }
@@ -537,15 +555,11 @@
       margin-left: 0.3em;
     }
 
-    .price-lead {
-      max-width: 640px;
-      margin-bottom: 0.9rem;
-      font-family: var(--font-ja);
-      font-weight: 300;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      color: var(--mid);
-    }
+    /* 2つめの表（制作物）は余白で区切る。罫線は足さない */
+    .price-table-item { margin-top: 2.2rem; }
+
+    /* intro の表は下の締め罫をなくし、余白だけで終わらせる */
+    .price-table-intro tbody tr:last-child td { border-bottom: none; }
 
     .price-note {
       margin-top: 1.6rem;
@@ -807,8 +821,7 @@
         grid-template-columns: 1fr;
         gap: 1.8rem;
       }
-      .hero-visual { order: -1; }
-      .hero-img { height: clamp(200px, 34svh, 340px); }
+      .hero-img { height: clamp(340px, 56svh, 540px); }
 
       .flow-list {
         grid-template-columns: 1fr;
@@ -842,7 +855,7 @@
 
       #hero { padding: calc(var(--header-h) + 0.5rem) 1.4rem 1rem; }
       .hero-inner { gap: 1.4rem; }
-      .hero-img { height: clamp(150px, 26svh, 260px); }
+      .hero-img { height: clamp(260px, 44svh, 400px); }
       .hero-sub { margin-top: 1rem; font-size: 0.85rem; line-height: 1.9; }
       .hero-actions { margin-top: 1.6rem; gap: 1.2rem; }
       .btn-cta { padding: 0.9rem 2rem; }
@@ -879,7 +892,7 @@
           <li><a href="#about">ABOUT</a></li>
           <li><a href="#price">PRICE</a></li>
           <li><a href="#contact">CONTACT</a></li>
-          <li class="header-cta-item"><a class="btn-cta btn-cta-sm" href="#contact">まずは相談する</a></li>
+          <li class="header-cta-item"><a class="btn-cta btn-cta-sm" href="#contact">相談してみる</a></li>
         </ul>
       </nav>
     </div>
@@ -888,15 +901,9 @@
   <!-- ── Hero ── -->
   <section id="hero" aria-label="hero">
     <div class="hero-inner">
-      <div class="hero-text">
-        <h1 class="hero-catch">らしさをカタチに。</h1>
-        <p class="hero-sub">ロゴ・名刺・ショップカード・パッケージなど、お店や活動の「らしさ」が伝わるデザインをいっしょにつくります。</p>
-        <div class="hero-actions">
-          <a class="btn-cta" href="#contact">まずは相談する</a>
-          <a class="hero-secondary" href="#works">作品を見る <span aria-hidden="true">↓</span></a>
-        </div>
-        <p class="hero-note">ご相談・お見積もりは無料です。2〜3営業日以内にお返事します。</p>
-      </div>
+      <h1 class="hero-catch-img">
+        <img src="images/ui/top_catch.jpg" alt="まずは、課題を見つけるところから" />
+      </h1>
       <div class="hero-visual">
         <img
           class="hero-img"
@@ -1032,7 +1039,7 @@
 
       </div>
       <div class="section-cta reveal">
-        <a class="btn-cta" href="#contact">まずは相談する</a>
+        <a class="btn-cta" href="#contact">相談してみる</a>
       </div>
     </div>
   </section>
@@ -1077,11 +1084,10 @@
         <h2 class="section-title"><img src="images/ui/price_moji.png" alt="Price" class="section-title-img" /></h2>
       </div>
       <div class="reveal">
-        <p class="price-lead">まずはここから</p>
-        <table class="price-table">
+        <table class="price-table price-table-intro">
           <thead>
             <tr>
-              <th>item</th>
+              <th>intro</th>
               <th>fee</th>
             </tr>
           </thead>
@@ -1094,6 +1100,17 @@
               <td>デザイン的ネガ出し会話<span class="price-sub">［ online・対面 ］</span></td>
               <td>¥1,500〜 / 1H</td>
             </tr>
+          </tbody>
+        </table>
+
+        <table class="price-table price-table-item">
+          <thead>
+            <tr>
+              <th>item</th>
+              <th>fee</th>
+            </tr>
+          </thead>
+          <tbody>
             <tr>
               <td>名刺</td>
               <td>¥15,000 〜</td>
@@ -1130,7 +1147,7 @@
           — まずはお気軽にご相談ください。お見積もりは無料です。
         </p>
         <div class="section-cta">
-          <a class="btn-cta" href="#contact">まずは相談する</a>
+          <a class="btn-cta" href="#contact">相談してみる</a>
         </div>
       </div>
     </div>
@@ -1150,8 +1167,8 @@
         </li>
         <li class="flow-item reveal">
           <p class="flow-num">2</p>
-          <h3 class="flow-step-title">話す</h3>
-          <p class="flow-step-text">1時間の「デザイン的ポジ出し会話」で、何をつくると良いかをいっしょに整理します（online・対面）。</p>
+          <h3 class="flow-step-title">見つける</h3>
+          <p class="flow-step-text">お話をうかがいながら、ご自身では気づいていない、ご相談の奥にある課題を見つけていきます。</p>
         </li>
         <li class="flow-item reveal">
           <p class="flow-num">3</p>
