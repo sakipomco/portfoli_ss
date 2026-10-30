@@ -1,0 +1,8 @@
+# 公開不要・非公開にしたいファイル
+.DS_Store
+.claude/
+_unused/
+sakishigeyas_works/
+*.md
+*.psd
+*.tif

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ありがとうございました｜saki shigeyasu</title>
+  <meta name="description" content="お問い合わせありがとうございました。2〜3営業日以内にお返事します。" />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Variables（index.html と共通） ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #0a0a0a;
+      --white:    #ffffff;
+      --mid:      #555;
+      --light:    #aaa;
+      --border:   #dedede;
+      --header-h: 140px;
+      --font-en:  'EB Garamond', Georgia, 'Times New Roman', serif;
+      --font-ja:  'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', '游明朝', serif;
+      --font-ui:  'DIN Alternate', 'Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-ja);
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── Header ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: transparent;
+      z-index: 100;
+      overflow: visible;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.2rem 2.5rem 1.2rem;
+      height: var(--header-h);
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      text-decoration: none;
+      padding: 0.8rem 0;
+    }
+
+    .header-logo-img { height: 100px; width: auto; display: block; flex-shrink: 0; }
+    .header-logo-moji { height: 48px; width: auto; display: block; flex-shrink: 0; }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+      list-style: none;
+      position: absolute;
+      bottom: 1.2rem;
+      right: 2.5rem;
+    }
+
+    .header-nav a {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--black);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .header-nav a:hover { opacity: 0.4; }
+
+    /* ─── Main ─── */
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: calc(var(--header-h) + 4rem) 2.5rem 6rem;
+    }
+
+    .thanks-message {
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      letter-spacing: 0.08em;
+      line-height: 2;
+      color: var(--black);
+    }
+
+    .thanks-back {
+      display: inline-block;
+      margin-top: 2.6rem;
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .thanks-back:hover { color: var(--black); }
+
+    /* ─── Footer ─── */
+    footer { padding: 2.4rem 2.5rem; }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--black);
+    }
+
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+
+    .footer-links a {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    @media (max-width: 600px) {
+      .header-inner { padding: 0 1.4rem; }
+      .header-logo-moji { height: 28px; }
+      .header-logo { gap: 0.6rem; }
+      .header-nav { gap: 1.4rem; }
+      .header-nav a { font-size: 0.6rem; letter-spacing: 0.14em; }
+
+      main { padding: calc(var(--header-h) + 2rem) 1.4rem 4rem; }
+
+      footer { padding: 2rem 1.4rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header id="site-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <img src="images/ui/saki_LOGO_202112.png" alt="saki shigeyasu" class="header-logo-img" />
+        <img src="images/ui/sakishigeyasu_moji.png" alt="saki shigeyasu" class="header-logo-moji" />
+      </a>
+      <nav aria-label="main">
+        <ul class="header-nav">
+          <li><a href="/#works">WORKS</a></li>
+          <li><a href="/#about">ABOUT</a></li>
+          <li><a href="/#price">PRICE</a></li>
+          <li><a href="/#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Main ── -->
+  <main>
+    <p class="thanks-message">ありがとうございました。2〜3営業日以内にお返事します。</p>
+    <a class="thanks-back" href="/">トップへ戻る</a>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 SAKI SHIGEYASU</p>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/saki.shigeyasu/" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="0.9em" height="0.9em" fill="currentColor" style="vertical-align:-0.12em;margin-right:0.3em"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a></li>
+        <li><a href="https://30nen.com/shop/watashinoreshihen" target="_blank" rel="noopener" aria-label="diary"><img src="images/ui/30nencom_icon.svg" width="0.9em" height="0.9em" alt="" style="width:0.9em;height:0.9em;vertical-align:-0.12em;margin-right:0.3em">diary</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

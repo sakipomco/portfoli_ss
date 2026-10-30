@@ -3,7 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>saki shigeyasu</title>
+  <title>saki shigeyasu｜グラフィックデザイナー｜逗子</title>
+  <meta name="description" content="神奈川県逗子市のグラフィックデザイナー saki shigeyasu。ロゴ・名刺・ショップカード・パッケージなど、お店や活動の「らしさ」が伝わるデザインをいっしょにつくります。" />
+  <link rel="canonical" href="https://shigeyasusaki.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shigeyasusaki.com/" />
+  <meta property="og:title" content="saki shigeyasu｜グラフィックデザイナー｜逗子" />
+  <meta property="og:description" content="神奈川県逗子市のグラフィックデザイナー saki shigeyasu。ロゴ・名刺・ショップカード・パッケージなど、お店や活動の「らしさ」が伝わるデザインをいっしょにつくります。" />
+  <meta property="og:image" content="https://shigeyasusaki.com/images/works/IMG_masucard.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="saki shigeyasu｜グラフィックデザイナー｜逗子" />
+  <meta name="twitter:description" content="神奈川県逗子市のグラフィックデザイナー saki shigeyasu。ロゴ・名刺・ショップカード・パッケージなど、お店や活動の「らしさ」が伝わるデザインをいっしょにつくります。" />
+  <meta name="twitter:image" content="https://shigeyasusaki.com/images/works/IMG_masucard.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet" />
@@ -17,6 +30,9 @@
       --mid:      #555;
       --light:    #aaa;
       --border:   #dedede;
+      /* CTAボタン専用の蛍光色。ボタン以外には使わない */
+      --accent:       #DFFF00;
+      --accent-hover: #CBE800;
       --nav-h:    56px;
       --header-h: 140px;
       --font-en:  'EB Garamond', Georgia, 'Times New Roman', serif;
@@ -81,12 +97,15 @@
 
     .header-nav {
       display: flex;
+      align-items: center;
       gap: 2.4rem;
       list-style: none;
       position: absolute;
       bottom: 1.2rem;
       right: 2.5rem;
     }
+
+    .header-nav .header-cta-item { margin-left: -0.6rem; }
 
     .header-nav a {
       font-family: var(--font-ui);
@@ -100,6 +119,41 @@
 
     .header-nav a:hover { opacity: 0.4; }
 
+    /* ─── CTA button（蛍光色はここだけ） ─── */
+    .btn-cta {
+      display: inline-block;
+      font-family: var(--font-ja);
+      font-weight: 400;
+      font-size: 0.84rem;
+      letter-spacing: 0.14em;
+      line-height: 1;
+      color: var(--black);
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 1rem 2.4rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s;
+    }
+
+    .btn-cta:hover { background: var(--accent-hover); }
+
+    .btn-cta:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 3px;
+    }
+
+    .btn-cta-sm {
+      font-size: 0.64rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 1.1rem;
+    }
+
+    /* セクション末尾に置くCTA */
+    .section-cta {
+      margin-top: 3rem;
+    }
+
     /* ─── Hero ─── */
     #hero {
       padding: calc(var(--header-h) + 0.5rem) 2.5rem 0;
@@ -108,71 +162,78 @@
       margin-right: auto;
     }
 
-    .hero-frame {
-      position: relative;
-      width: 100%;
-      height: 82svh;
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s cubic-bezier(.4,0,.2,1) forwards 0.2s;
+    }
+
+    .hero-catch {
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: clamp(1.65rem, 3.4vw, 2.45rem);
+      letter-spacing: 0.08em;
+      line-height: 1.55;
+      color: var(--black);
+    }
+
+    .hero-sub {
+      margin-top: 1.4rem;
+      max-width: 30em;
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.92rem;
+      letter-spacing: 0.05em;
+      line-height: 1.95;
+      color: var(--black);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      margin-top: 2.2rem;
+    }
+
+    .hero-secondary {
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .hero-secondary:hover { color: var(--black); }
+
+    .hero-note {
+      margin-top: 1.2rem;
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      line-height: 1.9;
+      color: var(--mid);
+    }
+
+    .hero-visual {
       overflow: hidden;
     }
 
     .hero-img {
       width: 100%;
-      height: 100%;
+      height: min(58svh, 520px);
       object-fit: cover;
       display: block;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.78) 0%,
-        rgba(0, 0, 0, 0.30) 42%,
-        rgba(0, 0, 0, 0.05) 68%,
-        transparent 100%
-      );
-    }
-
-    .hero-text {
-      position: absolute;
-      bottom: 2.6rem;
-      left: 3rem;
-      right: 3rem;
-      color: #fff;
-    }
-
-    .hero-name-row {
-      display: flex;
-      align-items: baseline;
-      gap: 1.1rem;
-      margin-bottom: 0.8rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-name-en {
-      font-family: var(--font-brand);
-      font-style: normal;
-      font-weight: 400;
-      font-size: clamp(2.6rem, 6.5vw, 4.6rem);
-      letter-spacing: 0.01em;
-      line-height: 1;
-    }
-
-    .hero-name-ja {
-      font-family: var(--font-ja);
-      font-weight: 200;
-      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
-      letter-spacing: 0.22em;
-      opacity: 0.85;
-    }
-
-    .hero-concept {
-      font-family: var(--font-ja);
-      font-weight: 200;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      color: rgba(255, 255, 255, 0.75);
     }
 
     /* ─── Section base ─── */
@@ -184,15 +245,6 @@
 
     .section-header {
       margin-bottom: 3.5rem;
-    }
-
-    .section-eyebrow {
-      font-family: var(--font-ui);
-      font-size: 0.62rem;
-      letter-spacing: 0.32em;
-      color: var(--light);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
     }
 
     .section-title {
@@ -215,6 +267,16 @@
     .section-title-img[alt="About"]   { height: clamp(1.12rem, 2.36vw, 1.65rem); }
     .section-title-img[alt="Price"]   { height: clamp(1.49rem, 3.14vw, 2.20rem); }
     .section-title-img[alt="Contact"] { height: clamp(0.87rem, 1.83vw, 1.28rem); }
+
+    /* 画像ではなく文字で組むセクションタイトル */
+    .section-title-ja {
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+      letter-spacing: 0.1em;
+      line-height: 1.3;
+      color: var(--black);
+    }
 
     /* ─── Works ─── */
     #works { }
@@ -307,6 +369,16 @@
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       color: var(--light);
+    }
+
+    .work-desc {
+      margin-top: 0.35rem;
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      line-height: 1.8;
+      color: var(--mid);
     }
 
     /* ─── About ─── */
@@ -465,6 +537,16 @@
       margin-left: 0.3em;
     }
 
+    .price-lead {
+      max-width: 640px;
+      margin-bottom: 0.9rem;
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--mid);
+    }
+
     .price-note {
       margin-top: 1.6rem;
       max-width: 640px;
@@ -474,6 +556,45 @@
       letter-spacing: 0.04em;
       color: var(--light);
       line-height: 2;
+    }
+
+    /* ─── Flow ─── */
+    #flow { }
+
+    .flow-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem 3.2rem;
+      max-width: 900px;
+    }
+
+    .flow-num {
+      font-family: var(--font-en);
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--light);
+      margin-bottom: 0.9rem;
+    }
+
+    .flow-step-title {
+      font-family: var(--font-ja);
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      line-height: 1.6;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-step-text {
+      font-family: var(--font-ja);
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      line-height: 2;
+      color: var(--mid);
     }
 
     /* ─── Contact ─── */
@@ -489,6 +610,16 @@
       line-height: 2;
       margin-bottom: 3rem;
     }
+
+    .contact-lead a {
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 0.25em;
+      text-decoration-thickness: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .contact-lead a:hover { opacity: 0.55; }
 
     .contact-form {
       max-width: 640px;
@@ -578,6 +709,27 @@
     }
 
     .btn-submit:hover { opacity: 0.7; }
+    .btn-submit:disabled { opacity: 0.4; cursor: default; }
+
+    /* スパム対策の隠し入力欄（人には見えない） */
+    .form-hp {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .form-status {
+      margin-top: 0.9rem;
+      font-family: var(--font-ja);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--light);
+      line-height: 1.8;
+    }
+
+    .form-status:empty { display: none; }
 
     .form-note {
       margin-top: 1.4rem;
@@ -645,18 +797,24 @@
     }
 
     /* ─── Hero entrance ─── */
-    .hero-text-inner {
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 0.9s cubic-bezier(.4,0,.2,1) forwards 0.3s;
-    }
-
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* ─── Responsive ─── */
     @media (max-width: 860px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .hero-visual { order: -1; }
+      .hero-img { height: clamp(200px, 34svh, 340px); }
+
+      .flow-list {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+      }
+
       .about-top {
         flex-direction: column;
         gap: 0;
@@ -679,9 +837,16 @@
       .header-logo { gap: 0.6rem; }
       .header-nav { gap: 1.4rem; }
       .header-nav a { font-size: 0.6rem; letter-spacing: 0.14em; }
+      /* ヘッダーに収まらないため、スマホではヘッダーのCTAを隠す */
+      .header-cta-item { display: none; }
 
-      #hero { padding: calc(var(--header-h) + 0.5rem) 1rem 0; }
-      .hero-text { left: 1.6rem; right: 1.6rem; bottom: 1.8rem; }
+      #hero { padding: calc(var(--header-h) + 0.5rem) 1.4rem 1rem; }
+      .hero-inner { gap: 1.4rem; }
+      .hero-img { height: clamp(150px, 26svh, 260px); }
+      .hero-sub { margin-top: 1rem; font-size: 0.85rem; line-height: 1.9; }
+      .hero-actions { margin-top: 1.6rem; gap: 1.2rem; }
+      .btn-cta { padding: 0.9rem 2rem; }
+      .hero-note { margin-top: 1rem; }
 
       .works-grid { grid-template-columns: 1fr; }
 
@@ -705,8 +870,8 @@
   <header id="site-header">
     <div class="header-inner">
       <a href="#" class="header-logo">
-        <img src="saki_LOGO_202112.png" alt="saki shigeyasu" class="header-logo-img" />
-        <img src="sakishigeyasu_moji.png" alt="saki shigeyasu" class="header-logo-moji" />
+        <img src="images/ui/saki_LOGO_202112.png" alt="saki shigeyasu" class="header-logo-img" />
+        <img src="images/ui/sakishigeyasu_moji.png" alt="saki shigeyasu" class="header-logo-moji" />
       </a>
       <nav aria-label="main">
         <ul class="header-nav">
@@ -714,6 +879,7 @@
           <li><a href="#about">ABOUT</a></li>
           <li><a href="#price">PRICE</a></li>
           <li><a href="#contact">CONTACT</a></li>
+          <li class="header-cta-item"><a class="btn-cta btn-cta-sm" href="#contact">まずは相談する</a></li>
         </ul>
       </nav>
     </div>
@@ -721,14 +887,23 @@
 
   <!-- ── Hero ── -->
   <section id="hero" aria-label="hero">
-    <div class="hero-frame">
-      <img
-        class="hero-img"
-        src="IMG_masucard.jpg"
-        alt="saki shigeyasu portfolio hero"
-      />
-      <div class="hero-overlay" aria-hidden="true" style="display:none;"></div>
-
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-catch">らしさをカタチに。</h1>
+        <p class="hero-sub">ロゴ・名刺・ショップカード・パッケージなど、お店や活動の「らしさ」が伝わるデザインをいっしょにつくります。</p>
+        <div class="hero-actions">
+          <a class="btn-cta" href="#contact">まずは相談する</a>
+          <a class="hero-secondary" href="#works">作品を見る <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="hero-note">ご相談・お見積もりは無料です。2〜3営業日以内にお返事します。</p>
+      </div>
+      <div class="hero-visual">
+        <img
+          class="hero-img"
+          src="images/works/IMG_masucard.jpg"
+          alt="グラフィックデザイナー saki shigeyasu の作品イメージ"
+        />
+      </div>
     </div>
   </section>
 
@@ -736,7 +911,7 @@
   <section id="works">
     <div class="section">
       <div class="section-header reveal">
-<h2 class="section-title"><img src="works_moji.png" alt="Works" class="section-title-img" /></h2>
+<h2 class="section-title"><img src="images/ui/works_moji.png" alt="Works" class="section-title-img" /></h2>
       </div>
       <div class="works-tabs reveal" role="tablist" aria-label="works category">
         <button class="tab-btn active" data-tab="all"      role="tab" aria-selected="true">all</button>
@@ -749,100 +924,115 @@
 
         <article class="work-card reveal" data-category="others">
           <div class="work-img-wrap">
-            <img src="byname.png" alt="seal design" loading="lazy" />
+            <img src="images/works/byname.png" alt="seal design" loading="lazy" />
           </div>
           <h3 class="work-title">株式会社 byname</h3>
           <p class="work-cat">logo / namecard</p>
+          <p class="work-desc">社名の意味をそのまま、ひと目で伝わるロゴに。</p>
         </article>
 
         <article class="work-card reveal" data-category="magazine">
           <div class="work-img-wrap">
-            <img src="inu_IMG_2428.jpg" alt="いぬのきもち magazine cover" loading="lazy" />
+            <img src="images/works/inu_IMG_2428.jpg" alt="いぬのきもち magazine cover" loading="lazy" />
           </div>
           <h3 class="work-title">いぬのきもち</h3>
           <p class="work-cat">Magazine / cover</p>
+          <p class="work-desc">毎号ちがう犬に、毎号おなじ安心感を。</p>
         </article>
 
         <article class="work-card reveal" data-category="logo">
           <div class="work-img-wrap">
-            <img src="kunsen02.png" alt="floral atelier kunsen" loading="lazy" />
+            <img src="images/works/kunsen02.png" alt="floral atelier kunsen" loading="lazy" />
           </div>
           <h3 class="work-title">floral atelier kunsen</h3>
           <p class="work-cat">logo / leaflet</p>
+          <p class="work-desc">花の輪郭だけを残した、余白のあるロゴとリーフレット。</p>
         </article>
 
         <article class="work-card reveal" data-category="shop">
           <div class="work-img-wrap">
-            <img src="YM2020.png" alt="YANGMING (JAPAN) CO., LTD." loading="lazy" />
+            <img src="images/works/YM2020.png" alt="YANGMING (JAPAN) CO., LTD." loading="lazy" />
           </div>
           <h3 class="work-title">YANGMING (JAPAN) CO., LTD.</h3>
           <p class="work-cat">calendar</p>
+          <p class="work-desc">12か月を1枚でめくる、事務所に置きたくなるカレンダー。</p>
         </article>
 
         <article class="work-card reveal" data-category="shop">
           <div class="work-img-wrap">
-            <img src="guri_menu_pan.jpg" alt="guri" loading="lazy" />
+            <img src="images/works/guri_menu_pan.jpg" alt="guri" loading="lazy" />
           </div>
           <h3 class="work-title">guri</h3>
           <p class="work-cat">logo / menu / shop</p>
+          <p class="work-desc">開店にあわせて、ロゴからメニュー、店内サインまで一式。</p>
         </article>
 
         <article class="work-card reveal" data-category="shop">
           <div class="work-img-wrap">
-            <img src="mom_card.png" alt="floral atelier kunsen card" loading="lazy" />
+            <img src="images/works/mom_card.png" alt="floral atelier kunsen card" loading="lazy" />
           </div>
           <h3 class="work-title">floral atelier kunsen</h3>
           <p class="work-cat">card</p>
+          <p class="work-desc">（仮）</p>
         </article>
 
         <article class="work-card reveal" data-category="magazine">
           <div class="work-img-wrap">
-            <img src="30nen_top_noren_back.png" alt="三十年商店" loading="lazy" />
+            <img src="images/works/30nen_top_noren_back.png" alt="三十年商店" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo / shop</p>
+          <p class="work-desc">自分の店だから試せた、ロゴと暖簾とシールの実験。</p>
         </article>
 
         <article class="work-card reveal" data-category="magazine">
           <div class="work-img-wrap">
-            <img src="30nen_logos_3.png" alt="三十年商店 logo" loading="lazy" />
+            <img src="images/works/30nen_logos_3.png" alt="三十年商店 logo" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo</p>
+          <p class="work-desc">自分の店だから試せた、ロゴと暖簾とシールの実験。</p>
         </article>
 
         <article class="work-card reveal" data-category="others">
           <div class="work-img-wrap">
-            <img src="30nen_seal_cup.png" alt="三十年商店 logo sticker" loading="lazy" />
+            <img src="images/works/30nen_seal_cup.png" alt="三十年商店 logo sticker" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo / sticker</p>
+          <p class="work-desc">自分の店だから試せた、ロゴと暖簾とシールの実験。</p>
         </article>
 
         <article class="work-card reveal" data-category="logo">
           <div class="work-img-wrap">
-            <img src="30nen_seal_ura.png" alt="三十年商店 logo sticker" loading="lazy" />
+            <img src="images/works/30nen_seal_ura.png" alt="三十年商店 logo sticker" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo / sticker</p>
+          <p class="work-desc">自分の店だから試せた、ロゴと暖簾とシールの実験。</p>
         </article>
 
         <article class="work-card reveal" data-category="shop">
           <div class="work-img-wrap">
-            <img src="ono_seal.png" alt="DM postcard" loading="lazy" />
+            <img src="images/works/ono_seal.png" alt="DM postcard" loading="lazy" />
           </div>
           <h3 class="work-title"></h3>
           <p class="work-cat">sticker</p>
+          <p class="work-desc">（仮）</p>
         </article>
 
         <article class="work-card reveal" data-category="others">
           <div class="work-img-wrap">
-            <img src="dm.png" alt="sticker" loading="lazy" />
+            <img src="images/works/dm.png" alt="sticker" loading="lazy" />
           </div>
           <h3 class="work-title"></h3>
           <p class="work-cat">DM / postcard</p>
+          <p class="work-desc">（仮）</p>
         </article>
 
+      </div>
+      <div class="section-cta reveal">
+        <a class="btn-cta" href="#contact">まずは相談する</a>
       </div>
     </div>
   </section>
@@ -851,22 +1041,21 @@
   <section id="about">
     <div class="section">
       <div class="section-header reveal">
-        <p class="section-eyebrow">profile</p>
-        <h2 class="section-title"><img src="about_moji.png" alt="About" class="section-title-img" /></h2>
+        <h2 class="section-title"><img src="images/ui/about_moji.png" alt="About" class="section-title-img" /></h2>
       </div>
       <div class="about-top reveal">
         <img
           class="about-photo"
-          src="saki_artistph.jpg"
+          src="images/about/saki_artistph.jpg"
           alt="saki shigeyasu"
         />
         <div class="about-bio-wrap">
-          <img src="about_catch.png" alt="デザインで信頼を。" class="about-catchphrase" />
+          <img src="images/about/about_catch.png" alt="デザインで信頼を。" class="about-catchphrase" />
           <p class="about-bio-sub">
-            きもちをカタチに。シンプルながらも的確に、ほんのすこしのユーモアあるデザインを。その結果、信頼が伝わる仕事を心がけています。ロゴ、紙モノ、ウェブ、ブランドのリニューアルなど、お気軽にお声がけください。神奈川県逗子市在住。
+            シンプルながらも的確に、ほんのすこしのユーモアあるデザインを。その結果、信頼が伝わる仕事を心がけています。ロゴ、紙モノ、ウェブ、ブランドのリニューアルなど、お気軽にお声がけください。神奈川県逗子市在住。
           </p>
           <p class="about-bio-sub about-bio-en-text">
-            Turning feelings into form. Simple yet precise, with just a touch of humour — design that earns trust. Feel free to reach out for logos, print, web, brand renewal, and more. Based in Zushi, Kanagawa.
+            Simple yet precise, with just a touch of humour — design that earns trust. Feel free to reach out for logos, print, web, brand renewal, and more. Based in Zushi, Kanagawa.
           </p>
         </div>
       </div>
@@ -885,10 +1074,10 @@
   <section id="price">
     <div class="section">
       <div class="section-header reveal">
-        <p class="section-eyebrow">fee guide</p>
-        <h2 class="section-title"><img src="price_moji.png" alt="Price" class="section-title-img" /></h2>
+        <h2 class="section-title"><img src="images/ui/price_moji.png" alt="Price" class="section-title-img" /></h2>
       </div>
       <div class="reveal">
+        <p class="price-lead">まずはここから</p>
         <table class="price-table">
           <thead>
             <tr>
@@ -897,6 +1086,14 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>デザイン的ポジ出し会話<span class="price-sub">［ online・対面 ］</span></td>
+              <td>¥2,000〜 / 1H</td>
+            </tr>
+            <tr>
+              <td>デザイン的ネガ出し会話<span class="price-sub">［ online・対面 ］</span></td>
+              <td>¥1,500〜 / 1H</td>
+            </tr>
             <tr>
               <td>名刺</td>
               <td>¥15,000 〜</td>
@@ -925,14 +1122,6 @@
               <td>Webサイト</td>
               <td><span class="price-campaign">！キャンペーン価格！</span>　¥50,000 〜</td>
             </tr>
-            <tr>
-              <td>デザイン的ポジ出し会話<span class="price-sub">［ online・対面 ］</span></td>
-              <td>¥2,000〜 / 1H</td>
-            </tr>
-            <tr>
-              <td>デザイン的ネガ出し会話<span class="price-sub">［ online・対面 ］</span></td>
-              <td>¥1,500〜 / 1H</td>
-            </tr>
           </tbody>
         </table>
         <p class="price-note">
@@ -940,7 +1129,36 @@
           — プロジェクトの規模・内容により変動します。<br>
           — まずはお気軽にご相談ください。お見積もりは無料です。
         </p>
+        <div class="section-cta">
+          <a class="btn-cta" href="#contact">まずは相談する</a>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Flow ── -->
+  <section id="flow">
+    <div class="section">
+      <div class="section-header reveal">
+        <h2 class="section-title-ja">ご依頼の流れ</h2>
+      </div>
+      <ol class="flow-list">
+        <li class="flow-item reveal">
+          <p class="flow-num">1</p>
+          <h3 class="flow-step-title">相談する</h3>
+          <p class="flow-step-text">フォームか Instagram のDMで、お困りごとをそのままお送りください。まだ何も決まっていなくて大丈夫です。</p>
+        </li>
+        <li class="flow-item reveal">
+          <p class="flow-num">2</p>
+          <h3 class="flow-step-title">話す</h3>
+          <p class="flow-step-text">1時間の「デザイン的ポジ出し会話」で、何をつくると良いかをいっしょに整理します（online・対面）。</p>
+        </li>
+        <li class="flow-item reveal">
+          <p class="flow-num">3</p>
+          <h3 class="flow-step-title">つくる</h3>
+          <p class="flow-step-text">お見積もりにご納得いただけたら制作へ。途中経過を共有しながら、納品まで進めます。</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -949,26 +1167,31 @@
     <div id="contact-section">
       <div class="section">
         <div class="section-header reveal">
-          <p class="section-eyebrow">get in touch</p>
-          <h2 class="section-title"><img src="contact_moji.png" alt="Contact" class="section-title-img" /></h2>
+            <h2 class="section-title"><img src="images/ui/contact_moji.png" alt="Contact" class="section-title-img" /></h2>
         </div>
         <p class="contact-lead reveal">
           お仕事のご依頼・ご相談は、<br>
           こちらのフォームよりお気軽にどうぞ。<br>
-          通常2〜3営業日以内にご返信いたします。
+          通常2〜3営業日以内にご返信いたします。<br>
+          <a href="https://www.instagram.com/saki.shigeyasu/" target="_blank" rel="noopener">Instagram</a>のDMからでもお気軽にどうぞ。
         </p>
-        <form class="contact-form reveal" name="contact" netlify>
+        <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/FORMSPREE_ID" method="POST">
+          <input type="hidden" name="_subject" value="【shigeyasusaki.com】お問い合わせ" />
+          <div class="form-hp" aria-hidden="true">
+            <label for="cf-gotcha">この欄は空のままにしてください</label>
+            <input type="text" id="cf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
           <div class="form-field">
               <label for="cf-name">お名前</label>
-              <input type="text" id="cf-name" name="name" placeholder="山田 花子" required />
+              <input type="text" id="cf-name" name="name" placeholder="山田 花子" maxlength="100" autocomplete="name" required />
             </div>
           <div class="form-field">
             <label for="cf-email">メールアドレス</label>
-            <input type="email" id="cf-email" name="email" placeholder="hello@example.com" required />
+            <input type="email" id="cf-email" name="email" placeholder="hello@example.com" maxlength="254" autocomplete="email" required />
           </div>
           <div class="form-field">
             <label for="cf-sns">SNSアカウント（お持ちであれば）</label>
-            <input type="text" id="cf-sns" name="sns" placeholder="@username / URL など" />
+            <input type="text" id="cf-sns" name="sns" placeholder="@username / URL など" maxlength="200" />
           </div>
           <div class="form-field">
             <label for="cf-type">ご依頼内容</label>
@@ -978,17 +1201,18 @@
               <option value="print">紙モノ（名刺・フライヤー等）</option>
               <option value="web">Webサイト</option>
               <option value="brand">ブランドリニューアル</option>
-              <option value="posi">デザイン的対話【ポジ出し】</option>
-              <option value="dame">デザイン的対話【ダメ出し】</option>
+              <option value="posi">デザイン的ポジ出し会話</option>
+              <option value="dame">デザイン的ネガ出し会話</option>
               <option value="other">その他・未定</option>
             </select>
           </div>
           <div class="form-field">
             <label for="cf-message">メッセージ</label>
-            <textarea id="cf-message" name="message" placeholder="ご依頼の背景・スケジュール・ご予算など、お気軽にお書きください。" required></textarea>
+            <textarea id="cf-message" name="message" placeholder="お困りごとがありましたら、お気軽にお書きください。" maxlength="5000"></textarea>
           </div>
           <div class="form-submit">
             <button type="submit" class="btn-submit">送信</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </div>
         </form>
       </div>
@@ -998,67 +1222,15 @@
   <!-- ── Footer ── -->
   <footer>
     <div class="footer-inner">
-      <p class="footer-copy">© 2025 SAKI SHIGEYASU</p>
+      <p class="footer-copy">© 2026 SAKI SHIGEYASU</p>
       <ul class="footer-links">
         <li><a href="https://www.instagram.com/saki.shigeyasu/" target="_blank" rel="noopener" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="0.9em" height="0.9em" fill="currentColor" style="vertical-align:-0.12em;margin-right:0.3em"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a></li>
-        <li><a href="https://30nen.com/category/watashinoreshihen/" target="_blank" rel="noopener" aria-label="diary"><img src="30nencom_icon.svg" width="0.9em" height="0.9em" alt="" style="width:0.9em;height:0.9em;vertical-align:-0.12em;margin-right:0.3em">diary</a></li>
+        <li><a href="https://30nen.com/shop/watashinoreshihen" target="_blank" rel="noopener" aria-label="diary"><img src="images/ui/30nencom_icon.svg" width="0.9em" height="0.9em" alt="" style="width:0.9em;height:0.9em;vertical-align:-0.12em;margin-right:0.3em">diary</a></li>
       </ul>
     </div>
   </footer>
 
-  <script>
-    /* Sticky header border */
-    const hdr = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-      hdr.classList.toggle('scrolled', window.scrollY > 10);
-    }, { passive: true });
-
-    /* Works tab filter */
-    const tabBtns  = document.querySelectorAll('.tab-btn');
-    const workCards = document.querySelectorAll('.work-card');
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-
-        const tab = btn.dataset.tab;
-        workCards.forEach(card => {
-          const show = tab === 'all' || card.dataset.category === tab;
-          card.style.display = show ? '' : 'none';
-        });
-      });
-    });
-
-    /* Scroll reveal with stagger */
-    const revealObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            revealObserver.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
-    );
-
-    /* Stagger siblings in the same parent */
-    const revealEls = document.querySelectorAll('.reveal');
-    let siblingIndex = new Map();
-
-    revealEls.forEach(el => {
-      const parent = el.parentElement;
-      const idx = (siblingIndex.get(parent) || 0);
-      siblingIndex.set(parent, idx + 1);
-      el.style.transitionDelay = `${idx * 0.06}s`;
-      revealObserver.observe(el);
-    });
-  </script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>
