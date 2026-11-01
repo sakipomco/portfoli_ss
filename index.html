@@ -35,13 +35,17 @@
       --accent-hover: #CBE800;
       --nav-h:    56px;
       --header-h: 154px;
+      --header-h-compact: 64px;
       --font-en:  'EB Garamond', Georgia, 'Times New Roman', serif;
       --font-ja:  'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', '游明朝', serif;
       --font-ui:  'DIN Alternate', 'Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
       --font-brand: 'DNP ShueiMincho Std', 'A-OTF Shuei Mincho Std', 'Hiragino Mincho ProN', 'Yu Mincho', '游明朝', Georgia, serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-h-compact) + 1.5rem);
+    }
 
     body {
       background: var(--white);
@@ -118,6 +122,31 @@
     }
 
     .header-nav a:hover { opacity: 0.4; }
+
+    /* ─── スクロールしたらヘッダーを白地・小さく ─── */
+    /* ナビは下端基準のままなので、ヘッダーが縮むと一緒に上がって中央に収まる */
+    header,
+    .header-inner,
+    .header-logo,
+    .header-logo-img,
+    .header-logo-moji {
+      transition: height 0.3s ease, padding 0.3s ease, background-color 0.3s ease;
+    }
+
+    header.scrolled {
+      height: var(--header-h-compact);
+      background: var(--white);
+    }
+
+    header.scrolled .header-inner {
+      height: var(--header-h-compact);
+      padding-top: 10px;
+      padding-bottom: 0;
+    }
+
+    header.scrolled .header-logo     { padding: 0; }
+    header.scrolled .header-logo-img  { height: 44px; }
+    header.scrolled .header-logo-moji { height: 24px; }
 
     /* ─── CTA button（蛍光色はここだけ） ─── */
     .btn-cta {
@@ -935,6 +964,10 @@
     }
 
     @media (max-width: 600px) {
+      :root { --header-h-compact: 56px; }
+      header.scrolled .header-logo-img  { height: 36px; }
+      header.scrolled .header-logo-moji { display: none; }
+
       .header-inner { padding: 0 1.4rem; }
       .header-logo-moji { height: 28px; }
       .header-logo { gap: 0.6rem; }

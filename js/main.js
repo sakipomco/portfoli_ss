@@ -1,8 +1,9 @@
-/* Sticky header border */
+/* Sticky header: white and compact once the page is scrolled */
 const hdr = document.getElementById('site-header');
-window.addEventListener('scroll', () => {
-  hdr.classList.toggle('scrolled', window.scrollY > 10);
-}, { passive: true });
+const syncHeader = () => hdr.classList.toggle('scrolled', window.scrollY > 10);
+window.addEventListener('scroll', syncHeader, { passive: true });
+/* Reloading mid-page should start compact too */
+syncHeader();
 
 /* Works tab filter */
 const tabBtns  = document.querySelectorAll('.tab-btn');
