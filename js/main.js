@@ -67,9 +67,15 @@ if (contactForm) {
         body: new FormData(contactForm),
         headers: { Accept: 'application/json' }
       });
-      if (!res.ok) throw new Error(res.status);
+      if (!res.ok) {
+        /* 失敗の理由を特定できるよう、送信先が返した内容をコンソールに残す */
+        const detail = await res.text().catch(() => '');
+        console.error('[contact] 送信失敗', res.status, res.statusText, detail);
+        throw new Error(res.status);
+      }
       window.location.href = '/thanks.html';
     } catch (err) {
+      console.error('[contact]', err);
       formStatus.textContent = '送信できませんでした。時間をおいて再度お試しいただくか、InstagramのDMからご連絡ください。';
       btn.disabled = false;
     }

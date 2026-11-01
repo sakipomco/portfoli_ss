@@ -34,7 +34,7 @@
       --accent:       #DFFF00;
       --accent-hover: #CBE800;
       --nav-h:    56px;
-      --header-h: 140px;
+      --header-h: 170px;
       --font-en:  'EB Garamond', Georgia, 'Times New Roman', serif;
       --font-ja:  'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', '游明朝', serif;
       --font-ui:  'DIN Alternate', 'Helvetica Neue', 'Arial Narrow', Arial, sans-serif;
@@ -157,6 +157,13 @@
       margin-top: 3rem;
     }
 
+    /* CTAで終わるセクションは、次のセクションとの間を詰める */
+    #works .section,
+    #price .section { padding-bottom: 3rem; }
+
+    #about .section,
+    #flow .section { padding-top: 3rem; }
+
     /* ─── Hero ─── */
     #hero {
       padding: calc(var(--header-h) + 0.5rem) 2.5rem 0;
@@ -168,7 +175,7 @@
     .hero-inner {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2rem;
       align-items: center;
     }
 
@@ -507,6 +514,18 @@
       border-bottom: 1px solid var(--black);
     }
 
+    /* 読み上げ用に残すが画面には出さない */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
     .price-table th {
       font-family: var(--font-ui);
       font-size: 0.6rem;
@@ -583,15 +602,6 @@
       max-width: 900px;
     }
 
-    .flow-num {
-      font-family: var(--font-en);
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-      line-height: 1;
-      color: var(--light);
-      margin-bottom: 0.9rem;
-    }
-
     .flow-step-title {
       font-family: var(--font-ja);
       font-weight: 400;
@@ -600,6 +610,7 @@
       line-height: 1.6;
       color: var(--black);
       margin-bottom: 0.5rem;
+      white-space: nowrap;
     }
 
     .flow-step-text {
@@ -1088,7 +1099,7 @@
           <thead>
             <tr>
               <th>intro</th>
-              <th>fee</th>
+              <th><span class="sr-only">fee</span></th>
             </tr>
           </thead>
           <tbody>
@@ -1107,7 +1118,7 @@
           <thead>
             <tr>
               <th>item</th>
-              <th>fee</th>
+              <th><span class="sr-only">fee</span></th>
             </tr>
           </thead>
           <tbody>
@@ -1161,18 +1172,15 @@
       </div>
       <ol class="flow-list">
         <li class="flow-item reveal">
-          <p class="flow-num">1</p>
-          <h3 class="flow-step-title">相談する</h3>
+          <h3 class="flow-step-title">1. 相談する</h3>
           <p class="flow-step-text">フォームか Instagram のDMで、お困りごとをそのままお送りください。まだ何も決まっていなくて大丈夫です。</p>
         </li>
         <li class="flow-item reveal">
-          <p class="flow-num">2</p>
-          <h3 class="flow-step-title">見つける</h3>
+          <h3 class="flow-step-title">2. 見つける</h3>
           <p class="flow-step-text">お話をうかがいながら、ご自身では気づいていない、ご相談の奥にある課題を見つけていきます。</p>
         </li>
         <li class="flow-item reveal">
-          <p class="flow-num">3</p>
-          <h3 class="flow-step-title">つくる</h3>
+          <h3 class="flow-step-title">3. つくる</h3>
           <p class="flow-step-text">お見積もりにご納得いただけたら制作へ。途中経過を共有しながら、納品まで進めます。</p>
         </li>
       </ol>
