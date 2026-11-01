@@ -367,7 +367,77 @@
       gap: 2rem 1.6rem;
     }
 
-    .work-card { cursor: default; }
+    /* ─── Lightbox ─── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      background: var(--white);
+      padding: 4.5rem 1.4rem 4.5rem;
+    }
+
+    .lightbox[open],
+    .lightbox.is-open { display: flex; }
+
+    .lightbox-figure {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      background: none;
+      border: none;
+      padding: 0.8rem;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--black);
+      transition: opacity 0.2s;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover { opacity: 0.4; }
+
+    .lightbox-close { top: 1.2rem; right: 1.6rem; }
+    .lightbox-prev  { left: 0.6rem;  top: 50%; transform: translateY(-50%); font-size: 1.1rem; }
+    .lightbox-next  { right: 0.6rem; top: 50%; transform: translateY(-50%); font-size: 1.1rem; }
+
+    .lightbox-count {
+      position: absolute;
+      bottom: 1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-ui);
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      color: var(--light);
+    }
+
+    /* 1枚しかないときは矢印とカウンタを出さない */
+    .lightbox.is-single .lightbox-prev,
+    .lightbox.is-single .lightbox-next,
+    .lightbox.is-single .lightbox-count { display: none; }
+
+    .work-card { cursor: zoom-in; }
 
     .work-img-wrap {
       overflow: hidden;
@@ -954,7 +1024,7 @@
 
         <article class="work-card reveal" data-category="others">
           <div class="work-img-wrap">
-            <img src="images/works/byname.png" alt="seal design" loading="lazy" />
+            <img src="images/works/byname.jpg" alt="seal design" loading="lazy" />
           </div>
           <h3 class="work-title">株式会社 byname</h3>
           <p class="work-cat">logo / namecard</p>
@@ -972,16 +1042,61 @@
 
         <article class="work-card reveal" data-category="logo">
           <div class="work-img-wrap">
-            <img src="images/works/kunsen02.png" alt="floral atelier kunsen" loading="lazy" />
+            <img src="images/works/kunsen02.jpg" alt="floral atelier kunsen" loading="lazy" />
           </div>
           <h3 class="work-title">floral atelier kunsen</h3>
           <p class="work-cat">logo / leaflet</p>
           <p class="work-desc">ロゴリニューアルからはじまり、撮影から紙のセレクトまで、細部にこだわりぬいて制作。</p>
         </article>
 
+        <article class="work-card reveal" data-category="shop" data-more="images/works/mihwa_02.jpg,images/works/mihwa_03.jpg">
+          <div class="work-img-wrap">
+            <img src="images/works/mihwa_01.jpg" alt="mihwa pamphlet" loading="lazy" />
+          </div>
+          <h3 class="work-title">mihwa</h3>
+          <p class="work-cat">pamphlet / cover</p>
+          <p class="work-desc">統一感を出しながらも、緩急をつける20ページ全体のデザイン・構成を担当。</p>
+        </article>
+
         <article class="work-card reveal" data-category="shop">
           <div class="work-img-wrap">
-            <img src="images/works/YM2020.png" alt="YANGMING (JAPAN) CO., LTD." loading="lazy" />
+            <img src="images/works/miura_map.jpg" alt="Miura odekake Map" loading="lazy" />
+          </div>
+          <h3 class="work-title">Miura odekake Map</h3>
+          <p class="work-cat">booklet / cover</p>
+          <p class="work-desc">海と食の写真を大きく、歩きたくなる冊子に。</p>
+        </article>
+
+        <article class="work-card reveal" data-category="shop" data-more="images/works/comful_02.jpg">
+          <div class="work-img-wrap">
+            <img src="images/works/comful_01.jpg" alt="comful package" loading="lazy" />
+          </div>
+          <h3 class="work-title">comful</h3>
+          <p class="work-cat">package</p>
+          <p class="work-desc">カラフルなアクセサリーを引き立て、上品に見せる雰囲気のある箱に。</p>
+        </article>
+
+        <article class="work-card reveal" data-category="shop" data-more="images/works/moko_02.jpg">
+          <div class="work-img-wrap">
+            <img src="images/works/moko_01.jpg" alt="moko leaflet" loading="lazy" />
+          </div>
+          <h3 class="work-title">四柱推命占い moko</h3>
+          <p class="work-cat">leaflet / namecard</p>
+          <p class="work-desc">占いのもつ既存のイメージを手書きのイラストでライトに翻す。</p>
+        </article>
+
+        <article class="work-card reveal" data-category="shop" data-more="images/works/lwan_02.jpg">
+          <div class="work-img-wrap">
+            <img src="images/works/lwan_01.jpg" alt="LWAN BAKES shop card" loading="lazy" />
+          </div>
+          <h3 class="work-title">LWAN BAKES</h3>
+          <p class="work-cat">logo / shop card</p>
+          <p class="work-desc">店名の読み方に不安は残さない。持ち帰ったあとはおウチに貼ってもらえますように。</p>
+        </article>
+
+        <article class="work-card reveal" data-category="shop">
+          <div class="work-img-wrap">
+            <img src="images/works/YM2020.jpg" alt="YANGMING (JAPAN) CO., LTD." loading="lazy" />
           </div>
           <h3 class="work-title">YANGMING (JAPAN) CO., LTD.</h3>
           <p class="work-cat">calendar</p>
@@ -993,13 +1108,13 @@
             <img src="images/works/guri_menu_pan.jpg" alt="guri" loading="lazy" />
           </div>
           <h3 class="work-title">guri</h3>
-          <p class="work-cat">logo / menu / flyer</p>
-          <p class="work-desc">店舗ロゴ、メニュー、イベントチラシまで。</p>
+          <p class="work-cat">logo / menu / flyer / poster / namecard</p>
+          <p class="work-desc">店舗ロゴ、メニュー、イベントチラシ、ポスター、名刺までグラフィック全般を担当。</p>
         </article>
 
         <article class="work-card reveal" data-category="shop">
           <div class="work-img-wrap">
-            <img src="images/works/mom_card.png" alt="floral atelier kunsen card" loading="lazy" />
+            <img src="images/works/mom_card.jpg" alt="floral atelier kunsen card" loading="lazy" />
           </div>
           <h3 class="work-title">floral atelier kunsen</h3>
           <p class="work-cat">card</p>
@@ -1008,7 +1123,7 @@
 
         <article class="work-card reveal" data-category="magazine">
           <div class="work-img-wrap">
-            <img src="images/works/30nen_top_noren_back.png" alt="三十年商店" loading="lazy" />
+            <img src="images/works/30nen_top_noren_back.jpg" alt="三十年商店" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo / shop</p>
@@ -1017,7 +1132,7 @@
 
         <article class="work-card reveal" data-category="magazine">
           <div class="work-img-wrap">
-            <img src="images/works/30nen_logos_3.png" alt="三十年商店 logo" loading="lazy" />
+            <img src="images/works/30nen_logos_3.jpg" alt="三十年商店 logo" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo / title</p>
@@ -1026,7 +1141,7 @@
 
         <article class="work-card reveal" data-category="others">
           <div class="work-img-wrap">
-            <img src="images/works/30nen_seal_cup.png" alt="三十年商店 logo sticker" loading="lazy" />
+            <img src="images/works/30nen_seal_cup.jpg" alt="三十年商店 logo sticker" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo / sticker</p>
@@ -1035,7 +1150,7 @@
 
         <article class="work-card reveal" data-category="logo">
           <div class="work-img-wrap">
-            <img src="images/works/30nen_seal_ura.png" alt="三十年商店 logo sticker" loading="lazy" />
+            <img src="images/works/30nen_seal_ura.jpg" alt="三十年商店 logo sticker" loading="lazy" />
           </div>
           <h3 class="work-title">三十年商店</h3>
           <p class="work-cat">logo / sticker</p>
@@ -1044,7 +1159,7 @@
 
         <article class="work-card reveal" data-category="shop">
           <div class="work-img-wrap">
-            <img src="images/works/ono_seal.png" alt="sticker" loading="lazy" />
+            <img src="images/works/ono_seal.jpg" alt="sticker" loading="lazy" />
           </div>
           <h3 class="work-title">オノチャン</h3>
           <p class="work-cat">sticker</p>
@@ -1053,7 +1168,7 @@
 
         <article class="work-card reveal" data-category="others">
           <div class="work-img-wrap">
-            <img src="images/works/dm.png" alt="DM postcard" loading="lazy" />
+            <img src="images/works/dm.jpg" alt="DM postcard" loading="lazy" />
           </div>
           <h3 class="work-title">不動産会社</h3>
           <p class="work-cat">DM / postcard</p>
@@ -1266,6 +1381,17 @@
       </ul>
     </div>
   </footer>
+
+  <!-- ── Lightbox ── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="作品画像" hidden>
+    <button class="lightbox-close" id="lb-close" type="button" aria-label="閉じる">CLOSE</button>
+    <button class="lightbox-prev" id="lb-prev" type="button" aria-label="前の画像">‹</button>
+    <button class="lightbox-next" id="lb-next" type="button" aria-label="次の画像">›</button>
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" id="lb-img" src="" alt="" />
+    </figure>
+    <p class="lightbox-count" id="lb-count"></p>
+  </div>
 
   <script src="js/main.js"></script>
 
