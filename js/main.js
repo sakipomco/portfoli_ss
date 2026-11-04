@@ -130,10 +130,14 @@ if (lb) {
   };
 
   workCards.forEach(card => {
-    card.addEventListener('click', () => open(card));
+    /* Links inside a card (illustrator credits) go to their page, not the lightbox */
+    card.addEventListener('click', e => {
+      if (!e.target.closest('a')) open(card);
+    });
     card.tabIndex = 0;
     card.setAttribute('role', 'button');
     card.addEventListener('keydown', e => {
+      if (e.target.closest('a')) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         open(card);
